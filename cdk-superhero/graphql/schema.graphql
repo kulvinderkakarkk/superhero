@@ -1,0 +1,67 @@
+input CreateSuperheroDBInput {
+	id: String!
+	name: String!
+	powers: [PowerInput!]
+	backstory: String
+}
+
+input DeleteSuperheroDBInput {
+	id: String!
+}
+
+input TableStringFilterInput {
+	ne: String
+	eq: String
+	le: String
+	lt: String
+	ge: String
+	gt: String
+	contains: String
+	notContains: String
+	between: [String]
+	beginsWith: String
+}
+
+input TableSuperheroFilterInput {
+	id: TableStringFilterInput
+	name: TableStringFilterInput
+}
+
+input UpdateSuperheroInput {
+	id: String!
+	name: String!
+	powers: [PowerInput!]
+	backstory: String
+}
+
+input PowerInput {
+	name: String!
+	label: String!
+}
+
+type allSuperheros {
+	items: [superheroDB]
+	nextToken: String
+}
+
+type superheroDB {
+	id: String
+	name: String
+	powers: [Power]
+	backstory: String
+}
+
+type Power {
+	name: String!
+	label: String!
+}
+
+type Mutation {
+	createSuperheroDB(input: CreateSuperheroDBInput!): superheroDB
+	updateSuperheroDB(input: UpdateSuperheroInput!): superheroDB
+	deleteSuperheroDB(input: DeleteSuperheroDBInput!): superheroDB
+}
+
+type Query {
+	getAllSuperherosDB(filter: TableSuperheroFilterInput, limit: Int, nextToken: String): allSuperheros
+}

@@ -187,7 +187,7 @@ const AddEditHero = (props) => {
         resetFormState();
         setLoading(false);
       } else {
-        // Add Error Handling Here
+        setLoading(false)
       }
     }
   };
@@ -242,6 +242,8 @@ const AddEditHero = (props) => {
         resetFormState();
         setLoading(false);
       }
+    } else {
+      setLoading(false)
     }
   };
 
@@ -250,7 +252,7 @@ const AddEditHero = (props) => {
     let flag =
       currentSuperhero["name"].length > 0 &&
       currentSuperhero["powers"].length > 0 &&
-      currentSuperhero["name"].length > 0
+      currentSuperhero["backstory"].length > 0
         ? true
         : false;
     return flag;
